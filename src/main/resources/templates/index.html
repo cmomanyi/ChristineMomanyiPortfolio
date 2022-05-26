@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
-<div th:switch="${users}">
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+<div th:switch="${potentialEmployers}">
     <h2 th:case="null">No users yet!</h2>
     <div th:case="*">
         <h2>Users</h2>
@@ -19,11 +31,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user : ${users}">
+            <tr th:each="potentialEmployer : ${potentialEmployers}">
                 <td th:text="${user.name}"></td>
                 <td th:text="${user.email}"></td>
-                <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
-                <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+<!--                <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>-->
+<!--                <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>-->
             </tr>
             </tbody>
         </table>

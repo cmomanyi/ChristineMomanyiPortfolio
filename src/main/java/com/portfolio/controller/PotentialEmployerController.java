@@ -23,14 +23,15 @@ public class PotentialEmployerController {
     EmployerRepository employerRepository;
 
     @GetMapping("/signup")
-    public String showSignUpForm(PotentialEmployer potentialEmployer) {
-        return "add-user";
+    public String showSignUpForm(PotentialEmployer potentialEmployer)
+    {
+        return "add-potentialEmployer";
     }
 
     @PostMapping("/adduser")
     public String addUser(@Valid PotentialEmployer potentialEmployer, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "add-user";
+            return "add-potentialEmployer";
         }
 
         employerRepository.save(potentialEmployer);
@@ -39,16 +40,16 @@ public class PotentialEmployerController {
 
     @GetMapping("/index")
     public String showUserList(Model model) {
-        model.addAttribute("users", employerRepository.findAll());
+        model.addAttribute("potentialEmployers", employerRepository.findAll());
         return "index";
     }
 
-    @GetMapping("/edit/{id}")
-    public String showUpdateForm(@PathVariable("id") long id, Model model) {
-        PotentialEmployer potentialEmployer = employerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-
-        model.addAttribute("user", potentialEmployer);
-        return "update-user";
-    }
+//    @GetMapping("/edit/{id}")
+//    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+//        PotentialEmployer potentialEmployer = employerRepository.findById(id)
+//                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+//
+//        model.addAttribute("user", potentialEmployer);
+//        return "update-user";
+ //   }
 }
